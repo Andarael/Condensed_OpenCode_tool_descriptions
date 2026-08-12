@@ -1,0 +1,8 @@
+{
+  "name": "opencode-condensed-tool-descriptions",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  }
+}
