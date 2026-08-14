@@ -53,6 +53,7 @@ Always include the envelope and an operation header. Prefix every added line wit
   },
   task: {
     hash: "220dcf4ad2582dbdaf2b0bbc8b7f5fa78172b1337539ac1c8912f45f2b9e5d46",
+    alternateHashes: ["9e1ca56fd3a3c446d618181c3ef7c669db32cbf864614dae5add4899646d2045"],
     description: `Launch an agent for complex multistep work; always specify \`subagent_type\`.
 
 Use for custom slash commands (pass the whole command as the prompt) and when an agent description says to use it proactively, such as a code reviewer after significant changes.
@@ -119,7 +120,7 @@ export function createDefinitionHook(version, warn = console.warn, hash = digest
     const replacement = audited[toolID]
     if (!replacement) return
     const actual = hash(output.description)
-    if (actual !== replacement.hash) {
+    if (actual !== replacement.hash && !replacement.alternateHashes?.includes(actual)) {
       if (!warned.has(toolID)) {
         warned.add(toolID)
         warn(`[condensed-tools] ${toolID} description drifted (${actual}); keeping vanilla description.`)
